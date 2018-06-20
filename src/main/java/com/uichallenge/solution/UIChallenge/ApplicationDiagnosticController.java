@@ -34,5 +34,40 @@ public class ApplicationDiagnosticController {
 		return json.toString();
 	
 	}
+	
+	@GetMapping("/api/v1/application/system")
+	public String getApplicationSystem() {
+		
+		System sys = new System();
+		
+		JSONObject json = new JSONObject();
+		
+		JSONObject RAM = new JSONObject();
+		JSONObject CPU = new JSONObject();
+		JSONObject HDD = new JSONObject();
+		
+		try {
+			RAM.put("used", sys.getUsedRAM());
+			RAM.put("total", sys.getTotalRAM());
+			
+			CPU.put("usage", sys.getCPULoad());
+			
+			HDD.put("used", sys.getUsedHDD());
+			HDD.put("total", sys.getTotalHDD());
+			
+			json.put("RAM", RAM);
+			json.put("CPU", CPU);
+			json.put("HDD", HDD);
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return json.toString();
+	
+	}
+	
+	
 
 }
