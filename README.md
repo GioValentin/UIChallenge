@@ -1,9 +1,4 @@
-# UIChallenge
-
-To run on Port 80 on a Mac Compute you would need to run this command in the project
-
-    sudo java -jar build/libs/UIChallenge-0.0.1-SNAPSHOT.jar --server.port=80
-  
+# UIChallenge  
   Overview The objective of this excercise is to prove an ability to learn, adapt, and implement based on the latest industry standard  techniques. A total of six challenges must be completed. There are three required challenges and another six optional challenges to choose from. Any combination of the optional challenges may be selected. However, <b>at least</b> three must be chosen, along with the three required to total the minimum six challenges. Please indicate which of the optional challenges have been selected so that they may be evaluated appropriatly. 
   
   Evaluation will be basd on clea, readable, coherent code, as well as successful completion of the challegnes. Fee; free to use any IDE. However, it i worth noting that most LiDP developers use Eclipse as their IDE. 
@@ -20,6 +15,10 @@ To run on Port 80 on a Mac Compute you would need to run this command in the pro
     - Create a landing page for the server using AngularJS 1.6.x and Angular Material 1. This page will serve as the home for all optional       challenges. 
   
   *** Note: Do not use any of the version of AngularJs2 or later.
+  
+  To run on Port 80 on a Mac machine you would need to run this command in the project root folder
+
+    sudo java -jar build/libs/UIChallenge-0.0.1-SNAPSHOT.jar --server.port=80
   
   Optional Tasks
   
