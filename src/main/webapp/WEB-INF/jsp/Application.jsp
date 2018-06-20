@@ -19,25 +19,26 @@
   	
   </md-toolbar>
 	
-  <div flex layout="row">
+  <div flex layout="row" >
   	<!-- Sidebar -->
   	<md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
-  		<md-list>
-
+  		<md-list ng-controller="StatsTaskController">
 		<!-- List item #1 -->
 		<md-list-item >
-			<md-button>
-			  Hello World
-			</md-button>
+			CPU: <b><span ng-bind="cpu">{{cpu}}</span></b>
 		</md-list-item>
-
-		<!-- List item #2 -->
 		<md-list-item >
-			<md-button>
-			  Request Demo
-			</md-button>
+			Used HDD: <b><span ng-bind="usedHDD">{{usedHDD}}</span></b>
 		</md-list-item>
-
+		<md-list-item >
+			Total HDD: <b><span ng-bind="totalHDD">{{totalHDD}}</span></b>
+		</md-list-item>
+		<md-list-item >
+			Used RAM: <b><span ng-bind="usedRAM">{{usedRAM}}</span></b>
+		</md-list-item>
+		<md-list-item >
+			Total RAM: <b><span ng-bind="totalRAM">{{totalRAM}}</span></b>
+		</md-list-item>
 	  </md-list>
   	</md-sidenav>
   	

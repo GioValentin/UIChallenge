@@ -8,7 +8,8 @@ var helpers = {
 		// We could take this function a little further 
 		// and build a query based off a dictionary object
 		return this.uri + this.version + "/" + resource ;
-	}
+	},
+	formatBytes:function(a,b){if(0==a)return"0 Bytes";var c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
 };
 
 UIChallengeApp.service('httpService', function($http){
@@ -140,8 +141,22 @@ UIChallengeApp.controller('MaterialTaskController',['$scope', function($scope){
 }]);
 
 UIChallengeApp.controller('StatsTaskController',['$scope', 'httpService', function($scope, httpService){
-	//Demostrate the task of Creating a circumfrence from a user input radius 
+	//Demostrate the task of Creating a circumference from a user input radius 
 	
+	$scope.init = function() {
+		httpService.request("GET", 'application/system').then(function(response){
+			console.log(response);
+			$scope.cpu = " " + helpers.formatBytes(response.data.CPU.used);
+			$scope.usedHDD = " " + helpers.formatBytes(response.data.HDD.used);
+			$scope.totalHDD = " " + helpers.formatBytes(response.data.HDD.total);
+			$scope.usedRAM = " " + helpers.formatBytes(response.data.RAM.used);
+			$scope.totalRAM = " " + helpers.formatBytes(response.data.RAM.total);
+			
+			console.log("Performed a RESTful GET Request", response);
+		});
+	}
+	
+	$scope.init();
 	
 	
 	// Server Route - GET - /api/v1/shape/circle/circumference 

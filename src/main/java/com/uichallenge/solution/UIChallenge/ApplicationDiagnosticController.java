@@ -50,7 +50,7 @@ public class ApplicationDiagnosticController {
 			RAM.put("used", sys.getUsedRAM());
 			RAM.put("total", sys.getTotalRAM());
 			
-			CPU.put("usage", sys.getCPULoad());
+			CPU.put("used", sys.getCPULoad());
 			
 			HDD.put("used", sys.getUsedHDD());
 			HDD.put("total", sys.getTotalHDD());
