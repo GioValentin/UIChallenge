@@ -14,6 +14,9 @@ public class System {
 		return osBean.getSystemLoadAverage();
 	}
 	
+	// I am not sure if this is supported in Windows systems
+	// But from my research it will run in Java 6+ 
+	// Notify me if you experience any issues.
 	public long getTotalHDD() {
 		File file = new File("/");
 		return file.getTotalSpace();

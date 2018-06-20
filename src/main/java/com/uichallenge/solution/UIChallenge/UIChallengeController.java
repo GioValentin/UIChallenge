@@ -11,16 +11,5 @@ public class UIChallengeController {
 	public ModelAndView index() {
 		return new ModelAndView("Application");
 	}
-	
-//	@RequestMapping("/demo-get-task")
-//	public ModelAndView demoGetTask() {
-//		return new ModelAndView("getRequestTask");
-//	}
-//	
-//	@RequestMapping("/demo-post-task")
-//	public ModelAndView demoPostTask() {
-//		return new ModelAndView("postRequestTask");
-//	}
-	
 
 }

@@ -1,6 +1,7 @@
 // Creating a UIChallengeApp Module
 var UIChallengeApp = angular.module('UIChallengeApp', ['ngMaterial']);
 
+// Create a helper object
 var helpers = {
 	uri: "/api/",
 	version: "v1",
@@ -9,13 +10,16 @@ var helpers = {
 		// and build a query based off a dictionary object
 		return this.uri + this.version + "/" + resource ;
 	},
+	// Formats systems stats to a readable format
 	formatBytes:function(a,b){if(0==a)return"0 Bytes";var c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
 };
 
+// Create a Http Service to make request
 UIChallengeApp.service('httpService', function($http){
 
 	var self = this;
-
+	
+	// We can pass POST,PUT,GET,DELETE as arguments
 	self.request = function(method, resource, param) {
 		method = method || "GET";
 		resource = resource || "application/info";
@@ -44,14 +48,14 @@ UIChallengeApp.controller('HelloWorldTaskController',['$scope',function($scope){
 
 //Create GetRequestTaskController
 UIChallengeApp.controller('GetRequestTaskController',['$scope','httpService', '$mdToast', function($scope, httpService, $mdToast){
-	// Demostrating the Java Spring RESTful api by requesting
+	//Demonstrating the Java Spring RESTful API by requesting
 	$scope.init = function(){
 		$scope.getApplicationInfo();
 	};
-	// application name. We will display basic system info
+	
+	//We will display basic system info
 	$scope.getApplicationInfo = function() {
 		// Request the for the application name
-		
 		httpService.request("GET", 'application/info').then(function(response){
 			$scope.applicationName = response.data.name;
 			$scope.applicationDate = response.data.date;
@@ -63,6 +67,7 @@ UIChallengeApp.controller('GetRequestTaskController',['$scope','httpService', '$
 
 	}
 	
+	//Setup for Toast postion
 	var last = {
 			bottom: false,
 		    top: true,
@@ -88,7 +93,7 @@ UIChallengeApp.controller('GetRequestTaskController',['$scope','httpService', '$
 		if ( current.left && last.right ) current.right = false;
 			last = angular.extend({},current);
 		}
-	
+	//Display a toast for 3 seconds
 	$scope.showSuccessToast = function() {
 	    $mdToast.show(
 	      $mdToast.simple()
@@ -107,21 +112,22 @@ UIChallengeApp.controller('PostRequestTaskController',['$scope', 'httpService', 
 	//Demostrate the task of Creating a circumfrence from a user input radius 
 	$scope.radius = null;
 	$scope.circumference
+	
+	//Call the RESTful api to calculate the circumference of the circle
 	$scope.getCalculatedCircumference = function(value) {
 		httpService.request("POST", 'math/circumference', {radius: $scope.radius}).then(function(response){
 			$scope.circumference = response.data.circumference;
+			
 			console.log("Performed a RESTful POST Request", response);
 		});
 	}
 	
 	// Server Route - POST - /api/v1/shape/circle/circumference 
-	// Attributes: Radius
-
 }]);
 
 UIChallengeApp.controller('MaterialTaskController',['$scope', function($scope){
 
-	//Demostrate the material ui Toast, Cards, and the datepicker
+	//Demonstrating the material ui Toast, Cards, and the DatePicker
 	//The date picker will calculate your age. 
 	$scope.birthDatePicker;
 	$scope.age = null;
@@ -135,13 +141,10 @@ UIChallengeApp.controller('MaterialTaskController',['$scope', function($scope){
 	    
 	    $scope.age = age;
 	}
-	
-	
-
 }]);
 
 UIChallengeApp.controller('StatsTaskController',['$scope', 'httpService', function($scope, httpService){
-	//Demostrate the task of Creating a circumference from a user input radius 
+	//Retrieve the system stats from the server and the convert the stats into a readable format
 	
 	$scope.init = function() {
 		httpService.request("GET", 'application/system').then(function(response){
@@ -159,8 +162,7 @@ UIChallengeApp.controller('StatsTaskController',['$scope', 'httpService', functi
 	$scope.init();
 	
 	
-	// Server Route - GET - /api/v1/shape/circle/circumference 
-	// Attributes: Radius
+	// Server Route - GET - /api/v1/shape/application/system 
 
 }]);
 
